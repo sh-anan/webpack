@@ -19,7 +19,7 @@ function resolve (dir) {
   }
 }){{/lint}}
 
-module.exports = {
+const webpackConfig = {
   context: path.resolve(__dirname, '../'),
   entry: {
     app: './src/main.js'
@@ -94,3 +94,5 @@ module.exports = {
     child_process: 'empty'
   }
 }
+
+module.exports = vuxLoader.merge(webpackConfig, { plugins: ['vux-ui'] })
