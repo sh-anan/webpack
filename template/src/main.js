@@ -4,9 +4,16 @@
 {{/if_eq}}
 import Vue from 'vue'
 import App from './App'
+import Axios from 'axios'
+import VueAxios from 'vue-axios'
 {{#router}}
 import router from './router'
 {{/router}}
+{{#vuex}}
+import store from './store'
+{{/vuex}}
+
+Vue.use(VueAxios, Axios)
 
 Vue.config.productionTip = false
 
@@ -16,6 +23,9 @@ new Vue({
   {{#router}}
   router,
   {{/router}}
+  {{#vuex}}
+  store,
+  {{/vuex}}
   {{#if_eq build "runtime"}}
   render: h => h(App)
   {{/if_eq}}
