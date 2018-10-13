@@ -4,8 +4,6 @@
 {{/if_eq}}
 import Vue from 'vue'
 import App from './App'
-import Axios from 'axios'
-import VueAxios from 'vue-axios'
 import Moment from 'moment'
 import FastClick from 'fastclick'
 {{#router}}
@@ -16,7 +14,6 @@ import store from './store'
 {{/vuex}}
 import { LoadingPlugin, ToastPlugin, AlertPlugin, ConfirmPlugin } from 'vux'
 import './assets/css/app.scss'
-Vue.use(VueAxios, Axios)
 Vue.use(LoadingPlugin)
 Vue.use(ToastPlugin)
 Vue.use(AlertPlugin)
