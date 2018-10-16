@@ -1,15 +1,29 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import getToken from '@/pages/getToken/getToken'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      redirect: 'getToken',
+    },
+    {
+      path: '/getToken',
+      component: getToken,
+      meta: {
+        title: '授权'
+      }
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title || '未定义标题'
+  next()
+})
+
+export default router
