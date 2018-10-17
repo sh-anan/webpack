@@ -8,11 +8,10 @@
   import config from '@/config/index'
   export default {
     data() {
-      return {
-      }
+      return {}
     },
-   mounted() {
-     console.log(this.$route.query.code);
+    mounted() {
+      console.log(this.$route.query.code);
       if (localStorage.token) { // 如果有token去重定向页面
         this.$router.replace({
           path: '/list'//重定向页面的地址
@@ -26,30 +25,34 @@
       }
     },
     methods: {
-      async _getToken() {
-        this.$vux.loading.show({
-          text: '授权中...'
-        });
-        let code = this.$route.query.code;
-        console.log(code);
-        // const datas = {code: code, mpid: config.mpid, appid: config.appid}
-        // console.log(datas)
-        await getToken({
-          code: code
-        }).then((res) => {
-          console.log(res);
-          this.$vux.loading.hide()
-          localStorage.token = res.data.data.token;//参考后台给的数据的接口写token
-          this.$router.push('/list') // 路由地址到重定向页面的地址
-        })
-      },
-      _getCode() {
-        localStorage.token = '';
-          localStorage.removeItem('token');
-          window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + config.appid + '&redirect_uri=' + config.loginUrl + '&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect'
-      }
-    },
-    components: {
-    }
+      async _getToken()
+  {
+    this.$vux.loading.show({
+      text: '授权中...'
+    });
+    let code = this.$route.query.code;
+    console.log(code);
+    // const datas = {code: code, mpid: config.mpid, appid: config.appid}
+    // console.log(datas)
+    await
+    getToken({
+      code: code
+    }).then((res) = > {
+      console.log(res);
+    this.$vux.loading.hide()
+    localStorage.token = res.data.data.token;//参考后台给的数据的接口写token
+    this.$router.push('/list') // 路由地址到重定向页面的地址
+  })
+  }
+  ,
+  _getCode()
+  {
+    localStorage.token = '';
+    localStorage.removeItem('token');
+    window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + config.appid + '&redirect_uri=' + config.loginUrl + '&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect'
+  }
+  },
+  components: {
+  }
   }
 </script>
