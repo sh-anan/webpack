@@ -37,7 +37,7 @@
     await
     getToken({
       code: code
-    }).then((res) = > {
+    }).then((res) => {
       console.log(res);
     this.$vux.loading.hide()
     localStorage.token = res.data.data.token;//参考后台给的数据的接口写token
